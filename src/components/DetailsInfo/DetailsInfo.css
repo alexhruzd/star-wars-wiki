@@ -1,0 +1,13 @@
+.DetailsInfo {
+    width: 49%;
+    background-color: rgb(57, 57, 68);
+    padding: 15px;
+}
+
+.DetailsInfo .detail_info_block {
+    align-items: center;
+}
+
+.DetailsInfo .info_block img {
+    width: 30%;
+}

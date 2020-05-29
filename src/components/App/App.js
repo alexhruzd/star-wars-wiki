@@ -1,22 +1,53 @@
 import React from 'react';
-import SwapiServices from '../../services/SwapiServices';
+
+import './App.css';
+
+import Header from '../Header';
+import RandomPlanet from '../RandomPlanet';
+import ItemsList from '../ItemsList';
+import DetailsInfo from '../DetailsInfo';
+
 
 const App = () => {
-    const swapi = new SwapiServices();
-    swapi.getAllPeople()
-        .then((body) => {
-            console.log(body);
-        });
+    // const swapi = new SwapiServices();
+    // swapi.getAllPeople()
+    //     .then((body) => {
+    //         console.log(body);
+    //     });
 
-    swapi.getPerson(5)
-        .then((body) => {
-            console.log(body);
-        });
-    console.log('app');
+    // swapi.getPerson(5)
+    //     .then((body) => {
+    //         console.log(body);
+    //     });
+
+    // swapi.getAllPlanets()
+    //     .then((body) => {
+    //         console.log(body);
+    //     });
+
+    // swapi.getPlanet(5)
+    //     .then((body) => {
+    //         console.log(body);
+    //     });
+
+    // swapi.getAllStarships()
+    //     .then((body) => {
+    //         console.log(body);
+    //     });
+
+    // swapi.getStrship(5)
+    //     .then((body) => {
+    //         console.log(body);
+    //     });
 
     return (
-        <div>
-            Header
+        <div className="App">
+            <Header />
+            <RandomPlanet />
+            <div className="d-flex justify-content-between">
+                <ItemsList />
+                <DetailsInfo />
+            </div>
         </div>
     )
 }
