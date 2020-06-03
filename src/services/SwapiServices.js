@@ -12,11 +12,7 @@ class SwapiServices {
 
     async getAllPeople() {
         const response = await this.getData('people/');
-        return response.results;
-    }
-
-    getPerson(id) {
-        return this.getData(`people/${id}/`);
+        return response.results.map((this.transformPerson));
     }
 
     async getAllPlanets() {
@@ -24,8 +20,38 @@ class SwapiServices {
         return response.results;
     }
 
-    getPlanet(id) {
-        return this.getData(`planets/${id}/`);
+    async getPerson(id) {
+        const person = await this.getData(`people/${id}/`);
+        return this.transformPerson(person);
+    }
+
+    async getPlanet(id) {
+        const planet = await this.getData(`planets/${id}/`);
+        return this.transformPlanet(planet);
+    }
+
+    transformPerson = (person) => {
+        return ({
+            id: this.getId(person),
+            name: person.name,
+            gender: person.gender,
+            mass: person.mass,
+            homeworld: person.homeworld
+        })
+    }
+
+    transformPlanet(planet) {
+        return ({
+            id: this.getId(planet),
+            name: planet.name,
+            diameter: planet.diameter,
+            population: planet.population,
+            gravity: planet.gravity,
+        });
+    }
+
+    getId(item) {
+        return item.url.match(/\/([0-9]*)\/$/)[1];
     }
 
     async getAllStarships() {
@@ -36,8 +62,6 @@ class SwapiServices {
     getStrship(id) {
         return this.getData(`starships/${id}/`);
     }
-
-
 }
 
 export default SwapiServices;

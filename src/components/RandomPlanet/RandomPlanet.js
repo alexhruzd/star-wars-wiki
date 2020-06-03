@@ -2,6 +2,7 @@ import React from 'react';
 
 import SwapiServices from '../../services/SwapiServices';
 import './RandomPlanet.css';
+import Loader from '../Loader';
 
 export default class RandomPlanet extends React.Component {
 
@@ -14,37 +15,42 @@ export default class RandomPlanet extends React.Component {
 
 
     state = {
-        name: null,
-        diameter: null,
-        population: null,
-        gravity: null,
+        planet: {},
+        load: true,
+    }
+
+    onPlanetLoaded = (planet) => {
+        this.setState({
+            planet,
+            load: false,
+        });
     }
 
     updatePlanet() {
-        this.swapi.getPlanet(4)
-            .then((planet) => {
-                this.setState(
-                    {
-                        name: planet.name,
-                        diameter: planet.diameter,
-                        population: planet.population,
-                        gravity: planet.gravity,
-                    }
-                );
-                console.log(planet);
-                
-            });
+        const id = Math.round(Math.random() * 30);
+        this.swapi.getPlanet(id)
+            .then(this.onPlanetLoaded);
     }
 
     render() {
 
-        const { name, diameter, population, gravity } = this.state;
+        const { planet: { id, name, diameter, population, gravity }, load } = this.state;
+
+        if (load) {
+            return (
+                <div className='RandomPlanet'>
+                    <Loader />
+                </div>
+            )
+        }
+
+        //return <Loader />;
 
         return (
             <div className='RandomPlanet'>
                 <h3>{name}</h3>
                 <div className="planet_block d-flex">
-                    <img alt="Planet" src='https://icdn.lenta.ru/images/2017/07/18/14/20170718144141447/detail_31a0e9ced0c9d9d04485d31ecba8d169.jpg' />
+                    <img alt="Planet" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} />
                     <ul className="planet_info_block">
                         <li>
                             <span>diameter </span>

@@ -9,37 +9,6 @@ import DetailsInfo from '../DetailsInfo';
 
 
 const App = () => {
-    // const swapi = new SwapiServices();
-    // swapi.getAllPeople()
-    //     .then((body) => {
-    //         console.log(body);
-    //     });
-
-    // swapi.getPerson(5)
-    //     .then((body) => {
-    //         console.log(body);
-    //     });
-
-    // swapi.getAllPlanets()
-    //     .then((body) => {
-    //         console.log(body);
-    //     });
-
-    // swapi.getPlanet(5)
-    //     .then((body) => {
-    //         console.log(body);
-    //     });
-
-    // swapi.getAllStarships()
-    //     .then((body) => {
-    //         console.log(body);
-    //     });
-
-    // swapi.getStrship(5)
-    //     .then((body) => {
-    //         console.log(body);
-    //     });
-
     return (
         <div className="App">
             <Header />
