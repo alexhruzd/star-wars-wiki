@@ -3,13 +3,9 @@ import React from 'react';
 import SwapiServices from '../../services/SwapiServices';
 import './RandomPlanet.css';
 import Loader from '../Loader';
+import ErrorComponent from '../ErrorComponent';
 
 export default class RandomPlanet extends React.Component {
-
-    constructor() {
-        super();
-        this.updatePlanet();
-    }
 
     swapi = new SwapiServices();
 
@@ -17,6 +13,20 @@ export default class RandomPlanet extends React.Component {
     state = {
         planet: {},
         load: true,
+        error: false,
+    }
+
+    componentDidMount() {
+        this.updatePlanet();
+        setInterval(this.updatePlanet, 5000);
+    }
+
+    onError = () => {
+        this.setState({
+            error: true,
+            load: false,
+        });
+
     }
 
     onPlanetLoaded = (planet) => {
@@ -26,47 +36,54 @@ export default class RandomPlanet extends React.Component {
         });
     }
 
-    updatePlanet() {
+    updatePlanet = () => {
         const id = Math.round(Math.random() * 30);
         this.swapi.getPlanet(id)
-            .then(this.onPlanetLoaded);
+            .then(this.onPlanetLoaded)
+            .catch(this.onError);
     }
 
     render() {
 
-        const { planet: { id, name, diameter, population, gravity }, load } = this.state;
+        const { planet, load, error } = this.state;
 
-        if (load) {
-            return (
-                <div className='RandomPlanet'>
-                    <Loader />
-                </div>
-            )
-        }
-
-        //return <Loader />;
+        const loader = load ? <Loader /> : null;
+        const content = (!load && !error) ? <PlanetView planet={planet} /> : null;
+        const err = error ? <ErrorComponent /> : null;
 
         return (
-            <div className='RandomPlanet'>
-                <h3>{name}</h3>
-                <div className="planet_block d-flex">
-                    <img alt="Planet" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} />
-                    <ul className="planet_info_block">
-                        <li>
-                            <span>diameter </span>
-                            <span>{diameter}</span>
-                        </li>
-                        <li>
-                            <span>population </span>
-                            <span>{population}</span>
-                        </li>
-                        <li>
-                            <span>gravity </span>
-                            <span>{gravity}</span>
-                        </li>
-                    </ul>
-                </div>
+            <div className="RandomPlanet">
+                {err}
+                {loader}
+                {content}
             </div>
         );
     }
+}
+
+const PlanetView = ({ planet }) => {
+    const { id, name, diameter, population, gravity } = planet;
+    return (
+        <>
+            <h3>{name}</h3>
+            <div className="planet_block d-flex">
+                <img alt="Planet" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} />
+                <ul className="planet_info_block">
+                    <li>
+                        <span>diameter </span>
+                        <span>{diameter}</span>
+                    </li>
+                    <li>
+                        <span>population </span>
+                        <span>{population}</span>
+                    </li>
+                    <li>
+                        <span>gravity </span>
+                        <span>{gravity}</span>
+                    </li>
+                </ul>
+            </div>
+        </>
+    );
+
 }

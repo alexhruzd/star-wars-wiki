@@ -17,6 +17,11 @@ class SwapiServices {
 
     async getAllPlanets() {
         const response = await this.getData('planets/');
+        return response.results.map((this.transformPlanet));
+    }
+
+    async getAllStarships() {
+        const response = await this.getData('starships/');
         return response.results;
     }
 
@@ -40,7 +45,7 @@ class SwapiServices {
         })
     }
 
-    transformPlanet(planet) {
+    transformPlanet = (planet) => {
         return ({
             id: this.getId(planet),
             name: planet.name,
@@ -52,11 +57,6 @@ class SwapiServices {
 
     getId(item) {
         return item.url.match(/\/([0-9]*)\/$/)[1];
-    }
-
-    async getAllStarships() {
-        const response = await this.getData('starships/');
-        return response.results;
     }
 
     getStrship(id) {
