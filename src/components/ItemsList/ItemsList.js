@@ -6,7 +6,7 @@ import SwapiServices from '../../services/SwapiServices';
 export default class ItemsList extends React.Component {
 
     state = {
-        people: null,
+        people: [],
     }
 
     swapi = new SwapiServices();
@@ -21,20 +21,23 @@ export default class ItemsList extends React.Component {
     }
 
     render() {
+        const { people } = this.state;
+
+        const elemetsPerson = people.map((person) => {
+
+            const { id, name } = person;
+
+            return (
+                <li key={id} className="list-group-item">
+                    {name}
+                </li>
+            );
+
+        });
+
         return (
-            <ul className="ItemsList">
-                <li>
-                    First Person
-            </li>
-                <li>
-                    Second Person
-            </li>
-                <li>
-                    Third Person
-            </li>
-                <li>
-                    Fourth Person
-            </li>
+            <ul className="list-group ItemsList">
+                {elemetsPerson}
             </ul>
         );
 

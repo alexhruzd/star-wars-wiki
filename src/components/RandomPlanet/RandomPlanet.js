@@ -29,6 +29,10 @@ export default class RandomPlanet extends React.Component {
 
     }
 
+    onErrorImg = () => {
+
+    }
+
     onPlanetLoaded = (planet) => {
         this.setState({
             planet,
@@ -67,17 +71,21 @@ const PlanetView = ({ planet }) => {
         <>
             <h3>{name}</h3>
             <div className="planet_block d-flex">
-                <img alt="Planet" src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} />
-                <ul className="planet_info_block">
-                    <li>
+                <img
+                    alt="Planet"
+                    src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+                    onError={e => { e.target.src = `https://starwars-visualguide.com/assets/img/placeholder.jpg` }}
+                />
+                <ul className="planet_info_block list-group list-group-flush">
+                    <li className="list-group-item">
                         <span>diameter </span>
                         <span>{diameter}</span>
                     </li>
-                    <li>
+                    <li className="list-group-item">
                         <span>population </span>
                         <span>{population}</span>
                     </li>
-                    <li>
+                    <li className="list-group-item">
                         <span>gravity </span>
                         <span>{gravity}</span>
                     </li>
