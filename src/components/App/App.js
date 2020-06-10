@@ -12,6 +12,7 @@ export default class App extends React.Component {
 
     state = {
         isRandomPlanet: true,
+        selectedPerson: null,
     }
 
     onTogglePlanet = () => {
@@ -21,7 +22,13 @@ export default class App extends React.Component {
             }
         });
     }
-    W
+    
+    onSelectPerson = (id) => {
+        this.setState({
+            selectedPerson: id
+        });
+    }
+
     render() {
         return (
             <div className="App">
@@ -33,8 +40,8 @@ export default class App extends React.Component {
                     on/off Planet
                 </button>
                 <div className="d-flex justify-content-between">
-                    <ItemsList />
-                    <DetailsInfo />
+                    <ItemsList onItemClick={this.onSelectPerson}/>
+                    <DetailsInfo personId={this.state.selectedPerson} />
                 </div>
             </div>
         );

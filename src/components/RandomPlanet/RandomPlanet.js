@@ -9,7 +9,6 @@ export default class RandomPlanet extends React.Component {
 
     swapi = new SwapiServices();
 
-
     state = {
         planet: {},
         load: true,
@@ -18,7 +17,11 @@ export default class RandomPlanet extends React.Component {
 
     componentDidMount() {
         this.updatePlanet();
-        setInterval(this.updatePlanet, 5000);
+        this.interval = setInterval(this.updatePlanet, 5000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     onError = () => {
@@ -26,11 +29,6 @@ export default class RandomPlanet extends React.Component {
             error: true,
             load: false,
         });
-
-    }
-
-    onErrorImg = () => {
-
     }
 
     onPlanetLoaded = (planet) => {
