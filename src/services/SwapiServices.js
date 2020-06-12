@@ -10,17 +10,17 @@ class SwapiServices {
         return await response.json();
     }
 
-    async getAllPeople() {
+    getAllPeople = async () => {
         const response = await this.getData('people/');
         return response.results.map((this.transformPerson));
     }
 
-    async getAllPlanets() {
+    getAllPlanets = async () => {
         const response = await this.getData('planets/');
         return response.results.map((this.transformPlanet));
     }
 
-    async getAllStarships() {
+    getAllStarships = async () => {
         const response = await this.getData('starships/');
         return response.results;
     }
