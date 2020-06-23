@@ -1,0 +1,11 @@
+.PlanetsList {
+    background-color: rgb(57, 57, 68);
+    padding: 15px;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    cursor: pointer;
+}

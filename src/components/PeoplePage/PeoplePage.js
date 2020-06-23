@@ -1,23 +1,10 @@
 import React from 'react';
 import './PeoplePage.css';
 
-import ItemsList from '../ItemsList';
+import PeoplesList from '../PeoplesList';
 import DetailsInfo from '../DetailsInfo';
 import SwapiServices from '../../services/SwapiServices';
-
-
-const Row = ({ left, right }) => {
-    return (
-        <div className="Row row">
-            <div className="col">
-                {left}
-            </div>
-            <div className="col">
-                {right}
-            </div>
-        </div>
-    );
-}
+import Row from '../Row';
 
 export default class PeoplePage extends React.Component {
 
@@ -35,24 +22,32 @@ export default class PeoplePage extends React.Component {
 
     render() {
 
-        const itemsList = (
-            <ItemsList
+        const { selectedPerson } = this.state;
+
+        const PeopleItemsList = (
+            <PeoplesList
                 onItemClick={this.onSelectPerson}
-                getData={this.swapi.getAllPeople}
                 renderItem={(item) =>
                     `${item.name} (${item.gender}, ${item.mass}kg)`}
             />
         );
 
-        const detailsInfo = (
-            <DetailsInfo personId={this.state.selectedPerson} />
+        const PeopleDetailsInfo = (
+            <DetailsInfo
+                itemId={selectedPerson}
+                getData={this.swapi.getPerson}
+                itemInfo={
+                    ['gender', 'mass', 'birthDate']
+                }
+                srcImg={`https://starwars-visualguide.com/assets/img/characters/`}
+            />
         );
 
         return (
             <div className="PeoplePage">
                 <Row
-                    left={itemsList}
-                    right={detailsInfo}
+                    left={PeopleItemsList}
+                    right={PeopleDetailsInfo}
                 />
             </div>
         )

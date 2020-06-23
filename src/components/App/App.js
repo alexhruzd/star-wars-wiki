@@ -5,6 +5,12 @@ import './App.css';
 import Header from '../Header';
 import RandomPlanet from '../RandomPlanet';
 import PeoplePage from '../PeoplePage';
+import PlanetPage from '../PlanetPage';
+
+import SwapiContext from "../SwapiServiceContext";
+
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import StarshipsPage from '../StarshipsPage';
 
 
 export default class App extends React.Component {
@@ -23,18 +29,32 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div className="App">
-                <Header />
-                {this.state.isRandomPlanet && <RandomPlanet />}
-                {/* <button
-                    onClick={this.onTogglePlanet}
-                >
-                    on/off Planet
-                </button> */}
-                <PeoplePage />
-                <PeoplePage />
-                <PeoplePage />
-            </div>
+            <SwapiContext.Provider value={this.swapi}>
+                <Router>
+                    <div className="App">
+                        <Header />
+                        {this.state.isRandomPlanet && <RandomPlanet />}
+                        <Route path="/" exact>
+                            <h3>Hello, my dear friend!!</h3>
+                        </Route>
+                        <Route path="/people">
+                            <h3>People</h3>
+                            <PeoplePage />
+                        </Route>
+
+                        <Route path="/planet">
+                            <h3>Planets</h3>
+                            <PlanetPage />
+                        </Route>
+
+                        <Route path="/starships">
+                            <h3>Starships</h3>
+                            <StarshipsPage />
+                        </Route>
+
+                    </div>
+                </Router>
+            </SwapiContext.Provider>
         );
 
     }

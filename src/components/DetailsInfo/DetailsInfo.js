@@ -8,69 +8,67 @@ export default class DetailsInfo extends React.Component {
     swapi = new SwapiServices();
 
     state = {
-        person: null,
+        item: null,
     }
 
     componentDidMount() {
-        this.updatePerson();
+        this.updateItem();
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.personId !== prevProps.personId) {
-            this.updatePerson();
+        if (this.props.itemId !== prevProps.itemId) {
+            this.updateItem();
         }
     }
 
-    updatePerson() {
-        const { personId } = this.props;
-        if (!personId)
+    updateItem() {
+        const { itemId, getData } = this.props;
+        if (!itemId)
             return;
 
-        this.swapi.getPerson(personId)
-            .then((person) => {
-                this.setState({ person });
+        getData(itemId)
+            .then((item) => {
+                this.setState({ item });
             });
     }
 
     render() {
 
-        const { person } = this.state;
+        const { item } = this.state;
 
-        if (!person) {
+        if (!item) {
             return (
                 <div className="DetailsInfo">
                     <p>
-                        Please, select person!
+                        Please, select item!
                     </p>
                 </div>
             );
         }
 
-        const { id, name, mass, birthDate, gender } = person;
+        const { id, name } = item;
+        const { itemInfo, srcImg } = this.props;
 
+        const elements = itemInfo.map((key) => {
+            return (
+                <li key={key}>
+                    <span>{key} </span>
+                    <span>{item[key]}</span>
+                </li>
+            );
+        });
 
         return (
             <div className="DetailsInfo">
                 <h3>{name}</h3>
                 <div className="d-flex info_block">
                     <img
-                        alt="Person"
-                        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+                        alt="item"
+                        src={srcImg + `${id}.jpg`}
                         onError={e => { e.target.src = `https://starwars-visualguide.com/assets/img/placeholder.jpg` }}
                     />
                     <ul className="detail_info_block">
-                        <li>
-                            <span>mass </span>
-                            <span>{mass}</span>
-                        </li>
-                        <li>
-                            <span>birth date </span>
-                            <span>{birthDate}</span>
-                        </li>
-                        <li>
-                            <span>gender </span>
-                            <span>{gender}</span>
-                        </li>
+                        {elements}
                     </ul>
                 </div>
             </div>
