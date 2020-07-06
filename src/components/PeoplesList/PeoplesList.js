@@ -28,7 +28,7 @@ const PeoplesList = (props) => {
     const elemets = renderItems(data);
 
     return (
-        <ul className="list-group PeoplesList">
+        <ul className="list-group PeoplesList ItemsList">
             {elemets}
         </ul>
     );

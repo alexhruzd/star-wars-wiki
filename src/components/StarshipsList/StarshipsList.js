@@ -28,7 +28,7 @@ const StarshipsList = (props) => {
     const elemets = renderItems(data);
 
     return (
-        <ul className="list-group StarshipsList">
+        <ul className="list-group StarshipsList ItemsList">
             {elemets}
         </ul>
     );

@@ -1,18 +1,30 @@
 .RandomPlanet {
     background-color: rgb(57, 57, 68);
+    background-image: url('./line.png');
+    background-size: contain;
     padding: 15px;
     margin-bottom: 30px;
 }
 
-.RandomPlanet .planet_block img {
-    width: 30%;
+.RandomPlanet .planet_block {
+    display: flex;
+    height: 250px;
 }
 
-.RandomPlanet .planet_block .planet_info_block {
-    width: 70%;
-    list-style: none;
+.RandomPlanet .planet_block .img_block{
+    height: 100%;
+    width: 25%;
 }
 
-.RandomPlanet .planet_block .planet_info_block span:first-child {
+.RandomPlanet .planet_block .img_block img {
+    width: 100%;
+    height: 100%;
+}
+
+.RandomPlanet .planet_block .info_block {
+    width: 75%;
+}
+
+.RandomPlanet .planet_block .info_block span:first-child {
     margin-right: 10px;
 }

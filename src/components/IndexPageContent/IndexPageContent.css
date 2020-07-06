@@ -1,0 +1,57 @@
+@font-face {
+    font-family: Mukta;
+    src: url('../../fonts/Mukta-Regular.ttf');
+}
+
+@font-face {
+    font-family: StarJedi;
+    src: url('../../fonts/Starjedi.ttf');
+}
+
+.CardCategory {
+    position: relative;
+    border: 4px solid transparent;
+    cursor: pointer;
+    width: 100%;
+}
+
+.CardCategory:hover {
+    opacity: .6;
+    border: 4px solid rgb(57, 57, 68);
+}
+
+.CardCategory img {
+    width: 100%;
+}
+
+.CardCategory span {
+    background-color: rgba(0, 0, 0, .4);
+    display: block;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.IndexPageContent p {
+    font-family: Mukta;
+    font-size: 18px;
+    background-color: rgba(15, 17, 19, .2);
+
+}
+
+.IndexPageContent .category_block {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.IndexPageContent .category_block a {
+    width: 50%;
+    font-family: StarJedi;
+    letter-spacing: 4px;
+}

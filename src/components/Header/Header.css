@@ -1,3 +1,13 @@
+@font-face {
+    font-family: StarHol;
+    src: url('../../fonts/Starjhol.ttf');
+}
+
+@font-face {
+    font-family: StarJedi;
+    src: url('../../fonts/Starjedi.ttf');
+}
+
 .Header {
     margin-bottom: 30px;
 }
@@ -5,6 +15,12 @@
 .Header h1 {
     width: 40%;
     margin-bottom: 0;
+    font-family: StarHol;
+}
+
+.Header a {
+    text-decoration: none;
+    letter-spacing: 2px;
 }
 
 .Header .main_nav {
@@ -13,4 +29,6 @@
     list-style: none;
     align-items: center;
     margin-bottom: 0;
+    font-family: StarJedi;
+
 }

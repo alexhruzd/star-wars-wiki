@@ -11,6 +11,8 @@ import SwapiContext from "../SwapiServiceContext";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import StarshipsPage from '../StarshipsPage';
+import IndexPageContent from '../IndexPageContent/IndexPageContent';
+import FilmsPage from '../FilmsPage/FilmsPage';
 
 
 export default class App extends React.Component {
@@ -35,14 +37,19 @@ export default class App extends React.Component {
                         <Header />
                         {this.state.isRandomPlanet && <RandomPlanet />}
                         <Route path="/" exact>
-                            <h3>Hello, my dear friend!!</h3>
+                            <h3>Hello, my dear Jedi!</h3>
+                            <IndexPageContent />
                         </Route>
-                        <Route path="/people">
-                            <h3>People</h3>
+                        <Route path="/films">
+                            <h3>Films</h3>
+                            <FilmsPage />
+                        </Route>   
+                        <Route path="/peoples">
+                            <h3>Characters</h3>
                             <PeoplePage />
                         </Route>
 
-                        <Route path="/planet">
+                        <Route path="/planets">
                             <h3>Planets</h3>
                             <PlanetPage />
                         </Route>
@@ -56,7 +63,6 @@ export default class App extends React.Component {
                 </Router>
             </SwapiContext.Provider>
         );
-
     }
 }
 

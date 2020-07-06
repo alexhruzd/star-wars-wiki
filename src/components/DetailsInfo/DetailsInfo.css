@@ -1,17 +1,14 @@
 .DetailsInfo {
     background-color: rgb(57, 57, 68);
+    background-image: url('./line.png');
+    background-size: contain;
     padding: 15px;
 }
 
-.DetailsInfo .detail_info_block {
-    align-items: center;
+.DetailsInfo .info_block {
+    width: 70%;
 }
 
-.DetailsInfo .info_block img {
+.DetailsInfo .detail_info_block img {
     width: 30%;
-}
-
-.DetailsInfo .detail_info_block {
-    list-style: none;
-    padding-left: 15px;
 }

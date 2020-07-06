@@ -39,10 +39,15 @@ export default class RandomPlanet extends React.Component {
     }
 
     updatePlanet = () => {
-        const id = Math.round(Math.random() * 30);
+        const id = this.randomInt(1, 30);
         this.swapi.getPlanet(id)
             .then(this.onPlanetLoaded)
             .catch(this.onError);
+    }
+
+    randomInt = (min, max) => {
+        let rand = min - 0.5 + Math.random() * (max - min + 1);
+        return Math.round(rand);
     }
 
     render() {
@@ -68,24 +73,26 @@ const PlanetView = ({ planet }) => {
     return (
         <>
             <h3>{name}</h3>
-            <div className="planet_block d-flex">
-                <img
-                    alt="Planet"
-                    src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
-                    onError={e => { e.target.src = `https://starwars-visualguide.com/assets/img/placeholder.jpg` }}
-                />
-                <ul className="planet_info_block list-group list-group-flush">
-                    <li className="list-group-item">
-                        <span>diameter </span>
-                        <span>{diameter}</span>
+            <div className="planet_block">
+                <div className="img_block">
+                    <img
+                        alt="Planet"
+                        src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+                        onError={e => { e.target.src = `https://starwars-visualguide.com/assets/img/placeholder.jpg` }}
+                    />
+                </div>
+                <ul className="info_block list-group">
+                    <li className="">
+                        <span className="info_title">Diameter: </span>
+                        <span className="info_content">{diameter}</span>
                     </li>
-                    <li className="list-group-item">
-                        <span>population </span>
-                        <span>{population}</span>
+                    <li className="">
+                        <span className="info_title">Population: </span>
+                        <span className="info_content">{population}</span>
                     </li>
-                    <li className="list-group-item">
-                        <span>gravity </span>
-                        <span>{gravity}</span>
+                    <li className="">
+                        <span className="info_title">Gravity: </span>
+                        <span className="info_content">{gravity}</span>
                     </li>
                 </ul>
             </div>

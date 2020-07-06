@@ -52,8 +52,8 @@ export default class DetailsInfo extends React.Component {
         const elements = itemInfo.map((key) => {
             return (
                 <li key={key}>
-                    <span>{key} </span>
-                    <span>{item[key]}</span>
+                    <span className="info_title">{key.replace(/([A-Z])/g, ' $1').replace(/^./, function (str) { return str.toUpperCase() })}: </span>
+                    <span className="info_content">{item[key]}</span>
                 </li>
             );
         });
@@ -61,13 +61,13 @@ export default class DetailsInfo extends React.Component {
         return (
             <div className="DetailsInfo">
                 <h3>{name}</h3>
-                <div className="d-flex info_block">
+                <div className="d-flex detail_info_block">
                     <img
                         alt="item"
                         src={srcImg + `${id}.jpg`}
                         onError={e => { e.target.src = `https://starwars-visualguide.com/assets/img/placeholder.jpg` }}
                     />
-                    <ul className="detail_info_block">
+                    <ul className="info_block">
                         {elements}
                     </ul>
                 </div>

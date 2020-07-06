@@ -25,6 +25,11 @@ class SwapiServices {
         return response.results.map((this.transformStarship));
     }
 
+    getAllFilms = async () => {
+        const response = await this.getData('films/');
+        return response.results.map((this.transformFilm)); 
+    }
+
     getPerson = async (id) => {
         const person = await this.getData(`people/${id}/`);
         return this.transformPerson(person);
@@ -38,7 +43,11 @@ class SwapiServices {
     getStarship = async (id) => {
         const starship = await this.getData(`starships/${id}/`);
         return this.transformStarship(starship);
+    }
 
+    getFilm = async (id) => {
+        const film = await this.getData(`films/${id}/`);
+        return this.transformFilm(film);
     }
 
     transformPerson = (person) => {
@@ -71,6 +80,21 @@ class SwapiServices {
                 starshipClass: starship.starship_class
             }
         );
+    }
+
+    transformFilm = (film) => {
+        return (
+            {
+                name: `Star Wars Episode ${film.episode_id}: ${film.title}`,
+                id: this.getId(film),
+                title: film.title,
+                episodeId: film.episode_id,
+                director: film.director,
+                producer: film.producer,
+                releaseDate: film.release_date,
+            }
+        );
+
     }
 
     getId(item) {

@@ -1,5 +1,54 @@
+@font-face {
+    font-family: StarOut;
+    src: url('../../fonts/Starjout.ttf');
+}
+
+@font-face {
+    font-family: OswaldMedium;
+    src: url('../../fonts/Oswald-Medium.ttf');
+}
+
+@font-face {
+    font-family: Mukta;
+    src: url('../../fonts/Mukta-Regular.ttf');
+}
+
+body {
+    background-image: url('./pngwing.png');
+    background-size: cover;
+}
+
 .App {
     width: 80%;
     margin: 0 auto;
     padding: 20px 0;
+}
+
+.App h3 {
+    font-family: StarOut;
+}
+
+.App .ItemsList li {
+    font-family: OswaldMedium;
+}
+
+.App .info_block {
+    margin: 0;
+    margin-left: 10px;
+    list-style: none;
+    background-color: #32383e;
+    border: 1px solid #000;
+
+    padding-left: 20px;
+    padding-top: 10px;
+    font-size: 18px;
+}
+
+.App .info_block .info_title {
+    font-family: OswaldMedium;
+}
+
+.App .info_block .info_content {
+    font-family: Mukta;
+    color: rgb(130, 130, 130)
 }
